@@ -1,13 +1,33 @@
 import { View, Text, KeyboardAvoidingView } from 'react-native'
 import React, { useState } from 'react'
 import {Button,Input} from 'react-native-elements'
+import { auth } from '../../firebase'
+import {createUserWithEmailAndPassword} from 'firebase/auth'
 
 const Register = () => {
  const [name,setName]=useState('')
  const [email,setEmail]=useState('')
  const [password,setPassword]=useState('')
  const [image,setImage]=useState("")
- const register =()=>{}
+ const register =()=>{
+  createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    // updateProfile(user, { 
+    //   displayName:name,
+    //    photoURL:
+    //     image || "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" })
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log (errorCode,errorMessage)
+    // ..
+  });
+
+
+ }
 
   return (
 <KeyboardAvoidingView behavior="padding" style={{flex:1,alignItems:"center",justifyContent:"center",padding:10,backgroundColor:"white"}}>
