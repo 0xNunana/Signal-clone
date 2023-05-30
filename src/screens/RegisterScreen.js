@@ -2,7 +2,7 @@ import { View, Text, KeyboardAvoidingView } from 'react-native'
 import React, { useState } from 'react'
 import {Button,Input} from 'react-native-elements'
 import { auth } from '../../firebase'
-import {createUserWithEmailAndPassword} from 'firebase/auth'
+import {createUserWithEmailAndPassword,updateProfile} from 'firebase/auth'
 
 const Register = () => {
  const [name,setName]=useState('')
@@ -14,10 +14,11 @@ const Register = () => {
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
-    // updateProfile(user, { 
-    //   displayName:name,
-    //    photoURL:
-    //     image || "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" })
+    updateProfile(user, { 
+      displayName:name,
+       photoURL:
+        image || "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" })
+        .catch((error)=>console.log(error.message))
   })
   .catch((error) => {
     const errorCode = error.code;

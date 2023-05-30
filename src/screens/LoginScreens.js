@@ -14,7 +14,7 @@ const LoginScreens = () => {
         
             const unsubscribe =onAuthStateChanged(auth, (user) => {
                 if (user) {
-                    console.log(user)
+                   
                     navigation.replace("Home")
                   // User is signed in, see docs for a list of available properties
                   // https://firebase.google.com/docs/reference/js/auth.user
@@ -28,7 +28,7 @@ const LoginScreens = () => {
     },[])
   
     const SignIn=()=>{
-signInWithEmailAndPassword(auth,email,password).catch((error)=>alert(error))
+signInWithEmailAndPassword(auth,email,password).catch(()=>alert("Profile Not Found. Please Register"))
     }
   return (
     <KeyboardAvoidingView 

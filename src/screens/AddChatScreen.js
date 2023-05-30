@@ -25,7 +25,7 @@ await addDoc(collection(db,'chats'),{
       }
       
       />
-      <Button title="Create new chat" onPress={createchat}/>
+      <Button disabled={!input} title="Create new chat" onPress={createchat}/>
     </View>
   )
 }
